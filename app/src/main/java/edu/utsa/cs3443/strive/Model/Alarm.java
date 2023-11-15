@@ -1,27 +1,16 @@
 package edu.utsa.cs3443.strive.Model;
 
-public abstract class Alarm {
-    private int alarmTime;
-    private boolean alarmEnabled;
+public class Alarm {
+    private String alarmTime;
 
-    public Alarm ( int alarmTime, boolean alarmEnabled ) {
-        this.alarmTime = alarmTime;
-        this.alarmEnabled = alarmEnabled;
-    }
-
-    public int getAlarmTime() {
+    public String getAlarmTime() {
         return alarmTime;
     }
 
-    public void setAlarmTime(int alarmTime) {
+    public void setAlarmTime(String alarmTime) {
         this.alarmTime = alarmTime;
     }
-
-    public boolean isAlarmEnabled() {
-        return alarmEnabled;
-    }
-
-    public void setAlarmEnabled(boolean alarmEnabled) {
-        this.alarmEnabled = alarmEnabled;
+    public boolean isAlarmSet(){
+        return alarmTime != null;
     }
 }

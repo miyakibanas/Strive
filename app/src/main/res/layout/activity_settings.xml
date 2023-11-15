@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="00:00:00 AM"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/select1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/h1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <Spinner
+        android:id="@+id/select2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/h1"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/select1"
+        android:layout_marginStart="16dp"/>
+
+    <Spinner
+        android:id="@+id/select3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/h1"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/select2"
+        android:layout_marginStart="16dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Set Alarm"/>
+
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_below="@id/button"
+        android:layout_marginTop="16dp"
+        android:visibility="visible">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="Settings" />
-    </LinearLayout>
-</LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
