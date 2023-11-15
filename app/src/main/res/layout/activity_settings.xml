@@ -16,7 +16,7 @@
     <Spinner
         android:id="@+id/select1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/h1"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"/>
@@ -24,7 +24,7 @@
     <Spinner
         android:id="@+id/select2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/h1"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/select1"
@@ -33,7 +33,7 @@
     <Spinner
         android:id="@+id/select3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/h1"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/select2"
