@@ -18,19 +18,19 @@
             android:text="Alarms" />
 
         <Switch
-            android:id="@+id/firstAlarm"
+            android:id="@+id/switch1"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:text="Alarm one time: " />
 
         <Switch
-            android:id="@+id/secondAlarm"
+            android:id="@+id/switch2"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:text="Alarm two time: " />
 
         <Switch
-            android:id="@+id/thirdAlarm"
+            android:id="@+id/switch3"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:text="Alarm three time: "

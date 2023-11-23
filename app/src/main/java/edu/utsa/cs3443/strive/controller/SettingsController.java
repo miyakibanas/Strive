@@ -1,6 +1,6 @@
-package edu.utsa.cs3443.strive.Controller;
+package edu.utsa.cs3443.strive.controller;
 
-import edu.utsa.cs3443.strive.Model.Alarm;
+import edu.utsa.cs3443.strive.model.Alarm;
 import edu.utsa.cs3443.strive.SettingsActivity;
 
 public class SettingsController {

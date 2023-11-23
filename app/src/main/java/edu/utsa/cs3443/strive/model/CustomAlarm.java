@@ -1,4 +1,4 @@
-package edu.utsa.cs3443.strive.Model;
+package edu.utsa.cs3443.strive.model;
 
 public class CustomAlarm extends Alarm {
     private String question;
@@ -7,4 +7,6 @@ public class CustomAlarm extends Alarm {
         super( alarmTime, alarmEnabled );
         this.question = question;
     }
+
+    
 }

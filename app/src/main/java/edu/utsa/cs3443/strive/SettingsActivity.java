@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import edu.utsa.cs3443.strive.Controller.SettingsController;
+import edu.utsa.cs3443.strive.controller.SettingsController;
 
 
 public class SettingsActivity extends AppCompatActivity {

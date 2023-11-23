@@ -1,8 +1,13 @@
-package edu.utsa.cs3443.strive.Model;
+package edu.utsa.cs3443.strive.model;
 
 public class Alarm {
-    private String alarmTime;
+    private int alarmTime;
+    private boolean alarmEnabled;
 
+    public Alarm ( int alarmTime, boolean alarmEnabled ){
+        this.alarmTime = alarmTime;
+        this.alarmEnabled = alarmEnabled;
+    }
     public String getAlarmTime() {
         return alarmTime;
     }
