@@ -8,5 +8,11 @@ public class CustomAlarm extends Alarm {
         this.question = question;
     }
 
-    
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
 }

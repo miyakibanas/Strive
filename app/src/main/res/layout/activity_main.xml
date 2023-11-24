@@ -17,24 +17,65 @@
             android:gravity="center"
             android:text="Alarms" />
 
-        <Switch
-            android:id="@+id/switch1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:text="Alarm one time: " />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Switch
-            android:id="@+id/switch2"
-            android:layout_width="match_parent"
-            android:layout_height="57dp"
-            android:text="Alarm two time: " />
+            <LinearLayout
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <Switch
-            android:id="@+id/switch3"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Alarm three time: "
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/switch1Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="Alarm One" />
+
+                <TextView
+                    android:id="@+id/switch2Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="Alarm Two" />
+
+                <TextView
+                    android:id="@+id/switch3Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:text="Alarm Three" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="195dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Alarm one time: " />
+
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Alarm two time: " />
+
+                <Switch
+                    android:id="@+id/switch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Alarm three time: "
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
