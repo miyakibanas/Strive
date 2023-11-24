@@ -4,7 +4,7 @@ public class Alarm {
     private int alarmTime;
     private boolean alarmEnabled;
 
-    public Alarm ( int alarmTime, boolean alarmEnabled ){
+    public Alarm ( ){
         this.alarmTime = alarmTime;
         this.alarmEnabled = alarmEnabled;
     }
