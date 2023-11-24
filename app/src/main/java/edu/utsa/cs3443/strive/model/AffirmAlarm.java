@@ -12,8 +12,7 @@ public class AffirmAlarm extends Alarm // !!!needs to be added to categories cla
     private boolean alarmActive;
 
     public AffirmAlarm()
-    {
-        super();
+    {        super();
         affirmations = new ArrayList<>();
         alarmActive = true;
     }
