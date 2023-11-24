@@ -1,3 +1,6 @@
+//Luis Quintero
+//wqy692
+
 package edu.utsa.cs3443.strive.model;
 
 import java.util.ArrayList;
