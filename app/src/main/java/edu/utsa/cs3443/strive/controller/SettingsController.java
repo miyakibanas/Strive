@@ -1,56 +1,61 @@
 package edu.utsa.cs3443.strive.controller;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.utsa.cs3443.strive.model.Alarm;
-import edu.utsa.cs3443.strive.SettingsActivity;
 
 public class SettingsController {
-    private SettingsActivity activity;
-    private Alarm alarm;
+    private Context context;
+    private SharedPreferences sharedPreferences;
+    private Gson gson = new Gson();
+    private final String ALARM_LIST_KEY = "alarms";
 
-    public SettingsController(SettingsActivity activity) {
-        this.activity = activity;
-        this.alarm = new Alarm();
+    public SettingsController(Context context) {
+        this.context = context;
+        this.sharedPreferences = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE);
     }
 
-    public void updateCurrentTime() {
-        String ampm = "AM";
-        int h, m, s;
-        java.util.Calendar cal = java.util.Calendar.getInstance();
-        h = cal.get(java.util.Calendar.HOUR);
-        m = cal.get(java.util.Calendar.MINUTE);
-        s = cal.get(java.util.Calendar.SECOND);
-        if (cal.get(java.util.Calendar.AM_PM) == java.util.Calendar.PM) {
-            ampm = "PM";
-        }
-        h = (h == 0) ? 12 : h;
-        String formattedTime = String.format("%02d:%02d:%02d %s", h, m, s, ampm);
-        activity.setCurrentTime(formattedTime);
-
-        if (alarm.getAlarmTime() != null && alarm.getAlarmTime().equals(formattedTime)) {
-            activity.playRingtone();
-        }
-
-        activity.scheduleUpdateTime();
+    public void addAlarm(Alarm alarm) {
+        List<Alarm> alarms = getAlarms();
+        alarms.add(alarm);
+        saveAlarms(alarms);
     }
 
-    public void setAlarm() {
-        if (alarm.isAlarmSet()) {
-            alarm.setAlarmTime(null);
-            activity.pauseRingtone();
-            activity.showContent();
-            activity.setButtonText("Set Alarm");
-        } else {
-            String hour = activity.getSelectedHour();
-            String minute = activity.getSelectedMinute();
-            String ampm = activity.getSelectedAMPM();
-            if (hour.equals("Hour") || minute.equals("Minute") || ampm.equals("AM/PM")) {
+    public List<Alarm> getAlarms() {
+        String json = sharedPreferences.getString(ALARM_LIST_KEY, null);
+        Type type = new TypeToken<ArrayList<Alarm>>() {}.getType();
+        List<Alarm> alarms = gson.fromJson(json, type);
+        return alarms == null ? new ArrayList<>() : alarms;
+    }
 
-            } else {
-                alarm.setAlarmTime(hour + ":" + minute + " " + ampm);
-                activity.hideContent();
-                activity.setButtonText("Clear Alarm");
+    public void removeAlarm(Alarm alarm) {
+        List<Alarm> alarms = getAlarms();
+        alarms.removeIf(a -> a.getId().equals(alarm.getId()));
+        saveAlarms(alarms);
+    }
+
+    public void updateAlarm(Alarm updatedAlarm) {
+        List<Alarm> alarms = getAlarms();
+        for (int i = 0; i < alarms.size(); i++) {
+            if (alarms.get(i).getId().equals(updatedAlarm.getId())) {
+                alarms.set(i, updatedAlarm);
+                break;
             }
         }
+        saveAlarms(alarms);
     }
+
+    public void saveAlarms(List<Alarm> alarms) {
+        String json = gson.toJson(alarms);
+        sharedPreferences.edit().putString(ALARM_LIST_KEY, json).apply();
+    }
+
 }
 

@@ -1,49 +1,67 @@
 package edu.utsa.cs3443.strive;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Switch;
-import android.widget.TextView;
+import android.view.View;
 
-import edu.utsa.cs3443.strive.controller.MainController;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    private Switch switch1;
-    private Switch switch2;
-    private Switch switch3;
-    private TextView switch1Text;
-    private TextView switch2Text;
-    private TextView switch3Text;
+import edu.utsa.cs3443.strive.controller.SettingsController;
+import edu.utsa.cs3443.strive.model.Alarm;
+import edu.utsa.cs3443.strive.model.AlarmAdapter;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private RecyclerView recyclerView;
+    private AlarmAdapter alarmAdapter;
+    private List<Alarm> alarms;
+    private SettingsController settingsController;
+    private static final int REQUEST_CODE_ADD_ALARM = 1;
+    private final ActivityResultLauncher<Intent> alarmSetupActivityResultLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                            if (result.getResultCode() == RESULT_OK) {
+                                refreshAlarmList();
+                            }
+                        }
+                    }
+            );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MainController mainController = new MainController(this);
+        settingsController = new SettingsController(this);
 
-        // Get id for three switches and their adjacent TextView
-        switch1 = findViewById(R.id.switch1);
-        switch1Text = findViewById(R.id.switch1Text);
+        recyclerView = findViewById(R.id.recycler_view_alarms);
+        alarms = settingsController.getAlarms();
+        alarmAdapter = new AlarmAdapter(alarms, settingsController);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(alarmAdapter);
 
-        switch2 = findViewById(R.id.switch2);
-        switch2Text = findViewById(R.id.switch2Text);
-
-        switch3 = findViewById(R.id.switch3);
-        switch3Text = findViewById(R.id.switch3Text);
-
-        // Connect switches and TextViews
-        switch1.setOnClickListener(view -> mainController.onSwitchClicked(1));
-        switch1Text.setOnClickListener(view -> mainController.onSwitchTextClicked(1));
-
-        switch2.setOnClickListener(view -> mainController.onSwitchClicked(2));
-        switch2Text.setOnClickListener(view -> mainController.onSwitchTextClicked(2));
-
-        switch3.setOnClickListener(view -> mainController.onSwitchClicked(3));
-        switch3Text.setOnClickListener(view -> mainController.onSwitchTextClicked(3));
+        FloatingActionButton fabAddAlarm = findViewById(R.id.fab_add_alarm);
+        fabAddAlarm.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, AlarmSetupActivity.class);
+        alarmSetupActivityResultLauncher.launch(intent);
     }
 
+    private void refreshAlarmList() {
+        alarms = settingsController.getAlarms();
+        alarmAdapter.setAlarms(alarms);
+        alarmAdapter.notifyDataSetChanged();
+    }
 }
