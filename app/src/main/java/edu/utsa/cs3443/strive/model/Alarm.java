@@ -28,12 +28,12 @@ public class Alarm implements Serializable {
         repeatDays.put("Saturday", false);
         repeatDays.put("Sunday", false);
 
-        // Default values for other fields
+
         isEnabled = false;
         label = "";
         mission = "";
         sound = "";
-        snoozeInterval = 0; // Default snooze interval
+        snoozeInterval = 0;
     }
 
     public boolean isEnabled() {
@@ -98,7 +98,6 @@ public class Alarm implements Serializable {
     }
 
     private String generateUniqueId() {
-        // Generate a unique ID, e.g., using UUID
         return UUID.randomUUID().toString();
     }
 }
