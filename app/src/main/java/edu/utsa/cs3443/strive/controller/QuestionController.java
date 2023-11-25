@@ -26,7 +26,6 @@ public class QuestionController implements View.OnClickListener{
         questionActivity.displayQuestion(question.getQuestion(), question.getChoices());
     }
 
-
     /**
      *
      * @param v The view that was clicked.
@@ -40,6 +39,7 @@ public class QuestionController implements View.OnClickListener{
 
         if (correctAnswer != null && correctAnswer.contains(selectedAnswer)) {
             Toast.makeText(questionActivity, "Correct!", Toast.LENGTH_LONG).show();
+            questionActivity.delayReturnToMainActivity();
         } else {
             Toast.makeText(questionActivity, "Incorrect. The correct answer is: " + correctAnswer, Toast.LENGTH_LONG).show();
         }

@@ -1,7 +1,9 @@
 package edu.utsa.cs3443.strive;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -63,5 +65,17 @@ public class QuestionActivity extends AppCompatActivity {
         answerButton1.setText(answers[firstNumber]);
         answerButton2.setText(answers[secondNumber]);
         answerButton3.setText(answers[thirdNumber]);
+    }
+
+    // Method for returning to previous screen
+    public void delayReturnToMainActivity() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Close current activity if needed
+            }
+        }, 3000); // 3 seconds delay
     }
 }
