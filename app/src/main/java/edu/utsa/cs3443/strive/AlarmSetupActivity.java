@@ -71,7 +71,8 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
         spinnerSnooze.setAdapter(snoozeAdapter);
 
         String[] missionsArray = new String[]{
-                "Snake Game" //add your mission here
+                "Snake Game", //add your mission here
+                "Question"
         };
         ArrayAdapter<String> missionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, missionsArray);
         spinnerMission.setAdapter(missionAdapter);
