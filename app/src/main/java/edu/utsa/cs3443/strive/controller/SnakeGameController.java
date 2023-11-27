@@ -1,6 +1,9 @@
 package edu.utsa.cs3443.strive.controller;
 
+import static edu.utsa.cs3443.strive.model.SnakeGame.DEFAULT_HIGH_SCORE;
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +14,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
+import edu.utsa.cs3443.strive.MainActivity;
+import edu.utsa.cs3443.strive.SnakeGameActivity;
 import edu.utsa.cs3443.strive.model.SnakeGame;
 
 public class SnakeGameController extends SurfaceView implements Runnable, SurfaceHolder.Callback  {
@@ -22,11 +27,9 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     private float startX;
     private float startY;
     private GameEndListener gameEndListener;
+    private SnakeGameActivity mainActivity;
     public interface GameEndListener {
         void onGameEnd();
-    }
-    public void setGameEndListener(GameEndListener listener) {
-        this.gameEndListener = listener;
     }
 
     public SnakeGameController(Context context) {
@@ -37,6 +40,11 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     public SnakeGameController(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs, 0);
+    }
+    public SnakeGameController(Context context, SnakeGameActivity mainActivity) {
+        super(context);
+        this.mainActivity = mainActivity;
+        init(null, 0);
     }
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -63,15 +71,16 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         snakeGame = new SnakeGame();
         paint = new Paint();
     }
-
+    private boolean highScoreAchieved = false;
     public int getCurrentScore() {
         return snakeGame.getScore();
     }
-
+    public void setGameEndListener(GameEndListener listener) {
+        this.gameEndListener = listener;
+    }
 
     @Override
     public void run() {
-        Log.d("SnakeGameController", "Starting game loop");
         while (playing) {
             if (!surfaceHolder.getSurface().isValid()) {
                 continue;
@@ -80,24 +89,19 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
             if (canvas != null) {
                 try {
                     synchronized (surfaceHolder) {
+                        snakeGame.updateGame(); // Update the game state
+
                         if (!snakeGame.isGameOver()) {
                             drawGame(canvas);
+                        } else {
+                            handleGameOver();
                         }
                     }
                 } finally {
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
-            snakeGame.updateGame();
-            if (snakeGame.isGameOver()) {
-                playing = false; // Stop the game loop
-                Log.d("SnakeGameController", "Game over detected in game loop");
-                if (gameEndListener != null) {
-                    gameEndListener.onGameEnd();
-                    Log.d("SnakeGameController", "Calling game end listener");
-                }
-                post(this::showGameOverToast);
-            }
+
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
@@ -123,19 +127,34 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         paint.setTextSize(30); // Set text size
         canvas.drawText("Score: " + snakeGame.getScore(), 10, 30, paint);
 
-        int defaultHighScore = 5; // You can change this value as needed
+        int defaultHighScore = 2; // You can change this value as needed
         canvas.drawText("High Score: " + defaultHighScore, 10, 60, paint);
     }
-    public void restartGame() {
-        Log.d("SnakeGameController", "Restarting game");
-        playing = true;
-        snakeGame.resetScore();
-        snakeGame.restartGame();
-        if (gameThread != null) {
-            gameThread.interrupt();
+
+    private void handleGameOver() {
+        Log.d("SnakeGameController", "Game Over Handled");
+        playing = false; // Stop the game loop
+        if (gameEndListener != null) {
+            gameEndListener.onGameEnd(); // Notify the listener that the game has ended
         }
+        post(this::showGameOverToast);
+    }
+    public void resume() {
+        playing = true;
         gameThread = new Thread(this);
         gameThread.start();
+    }
+    public void pause() {
+        playing = false;
+        try {
+            gameThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showGameOverToast () {
+        Toast.makeText(getContext(), "Game Over! Tap to restart.", Toast.LENGTH_LONG).show();
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -187,21 +206,17 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         super.performClick();
         return true;
     }
-    private void showGameOverToast () {
-        Toast.makeText(getContext(), "Game Over! Tap to restart.", Toast.LENGTH_LONG).show();
-    }
-    public void resume() {
+
+    public void restartGame() {
+        Log.d("SnakeGameController", "Restarting game");
         playing = true;
+        snakeGame.resetScore();
+        snakeGame.restartGame();
+        if (gameThread != null) {
+            gameThread.interrupt();
+        }
         gameThread = new Thread(this);
         gameThread.start();
-    }
-    public void pause() {
-        playing = false;
-        try {
-            gameThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
 

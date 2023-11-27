@@ -19,7 +19,6 @@ public class Alarm implements Serializable {
         this.id = generateUniqueId();
         repeatDays = new HashMap<>();
 
-        // Initialize all days to false
         repeatDays.put("Monday", false);
         repeatDays.put("Tuesday", false);
         repeatDays.put("Wednesday", false);
@@ -27,7 +26,6 @@ public class Alarm implements Serializable {
         repeatDays.put("Friday", false);
         repeatDays.put("Saturday", false);
         repeatDays.put("Sunday", false);
-
 
         isEnabled = false;
         label = "";
