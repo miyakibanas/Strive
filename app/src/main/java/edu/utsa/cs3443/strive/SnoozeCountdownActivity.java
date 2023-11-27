@@ -21,7 +21,7 @@ public class SnoozeCountdownActivity extends AppCompatActivity {
 
         countdownTextView = findViewById(R.id.countdownTextView);
 
-        countDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) { // Adjust this duration for your actual needs
+        countDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) { 
             public void onTick(long millisUntilFinished) {
                 int minutes = (int) (millisUntilFinished / 1000) / 60;
                 int seconds = (int) (millisUntilFinished / 1000) % 60;
