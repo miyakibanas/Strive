@@ -128,6 +128,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         else if ("Affirmations".equals(mission)) {
             Intent intent = new Intent( this, QuestionActivity.class);
         }
+        else if ("Exercise".equals(mission)){
+            Intent intent = new Intent(this, ExerciseAlarm.class);
+            startActivity(intent);
+        }
         else {
             Toast.makeText(this, "Starting mission: " + mission, Toast.LENGTH_SHORT).show();
         }

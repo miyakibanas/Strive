@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import edu.utsa.cs3443.strive.AlarmSetupActivity;
 import edu.utsa.cs3443.strive.ExerciseAlarm;
+import edu.utsa.cs3443.strive.MainActivity;
 import edu.utsa.cs3443.strive.R;
 
 public class ExerciseAlarmController {
@@ -49,9 +50,7 @@ public class ExerciseAlarmController {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(exerciseAlarm, AlarmSetupActivity.class);
-                intent.putExtra("exercise_name",lastSelectedExercise);
-                intent.putExtra("label",lastSelectedExercise+" "+numberPicker.getValue()+" Times");
+                Intent intent = new Intent(exerciseAlarm, MainActivity.class);
                 exerciseAlarm.startActivity(intent);
                 exerciseAlarm.finish();
             }
@@ -59,9 +58,7 @@ public class ExerciseAlarmController {
         btnPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(exerciseAlarm, AlarmSetupActivity.class);
-                intent.putExtra("exercise_name",lastSelectedExercise);
-                intent.putExtra("label",lastSelectedExercise+" "+numberPicker.getValue()+" Times");
+                Intent intent = new Intent(exerciseAlarm, MainActivity.class);
                 exerciseAlarm.startActivity(intent);
                 exerciseAlarm.finish();
             }
