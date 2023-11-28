@@ -27,6 +27,9 @@
             android:name=".AlarmSetupActivity"
             android:exported="false" />
         <activity
+            android:name=".AffirmationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuestionActivity"
             android:exported="false" />
         <activity
@@ -38,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <receiver android:name=".model.AlarmReceiver"></receiver>
 
