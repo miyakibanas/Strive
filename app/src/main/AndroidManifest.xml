@@ -30,8 +30,8 @@
             android:name=".ExerciseAlarm"
             android:exported ="false" />
         <activity
-            android:name=".AffirmationsActivity"
-            android:exported="false" />
+            android:name=".AffirmationsAlarm"
+            android:exported ="false" />
         <activity
             android:name=".QuestionActivity"
             android:exported="false" />

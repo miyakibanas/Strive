@@ -137,7 +137,8 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
         }
         else if ("Affirmations".equals(mission)) {
-            Intent intent = new Intent( this, AffirmationsActivity.class);
+            Intent intent = new Intent( this, AffirmationsAlarm.class);
+            startActivity(intent);
         }
         else if ("Exercise".equals(mission)){
             Intent intent = new Intent(this, ExerciseAlarm.class);

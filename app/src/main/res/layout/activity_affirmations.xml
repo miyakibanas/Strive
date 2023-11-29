@@ -2,85 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#000000"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/alarmTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:text="Alarm Time: 07:00 AM" />
+        android:textSize="30sp"
+        android:text="Alarm Time: 07:00 AM"
+        android:fontFamily="sans-serif-light" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_below="@id/alarmTimeTextView"
-        android:layout_marginTop="20dp"
+        android:layout_above="@id/submitAnswersButton"
+        android:layout_marginTop="32dp"
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/questionsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <!-- Question 1 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:text="How do you feel today?" />
-
-            <EditText
-                android:id="@+id/answer1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Type your answer"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
-                android:backgroundTint="#FFFFFF"/>
-
-            <!-- Repeat the TextView and EditText pattern for each question -->
-            <!-- Question 10 -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:text="What are you grateful for today?" />
-
-            <EditText
-                android:id="@+id/answer10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Type your answer"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#757575"
-                android:backgroundTint="#FFFFFF"/>
+            <!-- Dynamic questions and answers will be added here -->
         </LinearLayout>
     </ScrollView>
 
-    <!-- Button to submit the answers -->
     <Button
         android:id="@+id/submitAnswersButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Submit Answers"
-        android:textColor="#000000"
-        android:background="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_background"
+        android:padding="12dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium" />
+
 </RelativeLayout>
-
-
-
-
-
