@@ -41,6 +41,7 @@ Open the repository in external editor.
 2. Press the 'Run' button (green triangle) in Android Studio.
 
 ## Usage
+- User will be asked for permission to allow app to make changes 
 - To set an alarm, navigate to the alarm setup screen and specify the time, days, mission, and sound.
 - Use the main screen to view and manage all set alarms.
 - In case of an alarm trigger, the alarm screen will provide options to snooze or start a mission.
