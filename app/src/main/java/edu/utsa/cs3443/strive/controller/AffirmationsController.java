@@ -21,6 +21,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+
 import edu.utsa.cs3443.strive.MainActivity;
 
 import edu.utsa.cs3443.strive.R;
@@ -28,6 +33,7 @@ import edu.utsa.cs3443.strive.R;
 public class AffirmationsController
 {
     private Activity activity;
+    private TextView alarmTimeTextView;
     private LinearLayout questionsLayout;
     private Button submitButton;
     private List<EditText> answerFields;
@@ -37,13 +43,21 @@ public class AffirmationsController
     {
         this.activity = activity;
         this.questionsLayout = activity.findViewById(R.id.questionsLayout);
+        this.alarmTimeTextView = activity.findViewById(R.id.alarmTimeTextView);
         this.submitButton = activity.findViewById(R.id.submitAnswersButton);
         this.answerFields = new ArrayList<>();
         this.questions = loadQuestionsFromCSV("affirmationsQ.csv");
-        displayRandomQuestions(7);
+        displayRandomQuestions(3);
         setUpSubmitButton();
+        setCurrentTime();
     }
-
+    private void setCurrentTime()
+    {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        String currentTime = format.format(calendar.getTime());
+        alarmTimeTextView.setText(currentTime);
+    }
     private List<String> loadQuestionsFromCSV(String fileName)
     {
         List<String> questions = new ArrayList<>();
@@ -106,6 +120,7 @@ public class AffirmationsController
         {
             if (areAllQuestionsAnswered())
             {
+                Toast.makeText(activity, "Have a great day!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
                 activity.finish();

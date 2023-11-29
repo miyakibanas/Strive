@@ -17,5 +17,7 @@ public class AffirmationsAlarm extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affirmations);
         alarmController=new AffirmationsController(this);
+
+
     }
 }
