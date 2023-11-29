@@ -44,7 +44,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
             }
         }
         try {
-            mediaPlayer = MediaPlayer.create(this, soundResourceId); // replace with your actual sound file
+            mediaPlayer = MediaPlayer.create(this, soundResourceId);
             if (mediaPlayer == null) {
                 Log.e("AlarmScreenActivity", "Failed to create MediaPlayer");
 
@@ -74,6 +74,11 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         snoozeButton.setOnClickListener(this);
         startMissionButton.setOnClickListener(this);
 
+        boolean isReturningFromSnooze = getIntent().getBooleanExtra("isReturningFromSnooze", false);
+        if (isReturningFromSnooze) {
+            rescheduleAlarm();
+        }
+
         Log.d("AlarmScreen", "Alarm Screen Activity started.");
     }
 
@@ -97,22 +102,28 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
-        long snoozeTime = System.currentTimeMillis() + SNOOZE_DURATION_MS;
-        scheduleAlarm(snoozeTime);
-        Toast.makeText(this, "Snooze for 5 minutes", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, SnoozeCountdownActivity.class);
+        startActivity(intent);
         finish();
     }
 
-    private void scheduleAlarm(long triggerTime) {
+    private void rescheduleAlarm() {
+        long alarmTime = System.currentTimeMillis() + SNOOZE_DURATION_MS;
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("soundChoice", Alarm.getSound());
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         if (alarmManager != null) {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
+            Log.d("AlarmScreenActivity", "Alarm rescheduled for 5 minutes later");
+        } else {
+            Log.e("AlarmScreenActivity", "AlarmManager is null, cannot reschedule alarm");
         }
     }
+
     private void startMission() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
@@ -126,7 +137,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
         }
         else if ("Affirmations".equals(mission)) {
-            Intent intent = new Intent( this, QuestionActivity.class);
+            Intent intent = new Intent( this, AffirmationsActivity.class);
         }
         else if ("Exercise".equals(mission)){
             Intent intent = new Intent(this, ExerciseAlarm.class);

@@ -14,7 +14,7 @@ public class SnakeGame {
     private Random random = new Random();
     private boolean gameOver = false;
     private Direction direction = Direction.RIGHT;
-    private static final int DEFAULT_HIGH_SCORE = 5;
+    public static final int DEFAULT_HIGH_SCORE = 2;
 
     public SnakeGame() {
         resetGame();

@@ -4,7 +4,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,6 @@ import java.util.Map;
 import edu.utsa.cs3443.strive.controller.AlarmSetupController;
 import edu.utsa.cs3443.strive.model.Alarm;
 import edu.utsa.cs3443.strive.model.AlarmReceiver;
-
 
 public class AlarmSetupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -83,7 +84,9 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        saveAlarm();
+        if (checkScheduleExactAlarmPermission()) {
+            saveAlarm();
+        }
     }
 
     private void saveAlarm() {
@@ -119,14 +122,14 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
 
         alarmSetupController.saveAlarmDetails(alarm);
 
-        scheduleInexactAlarm(alarm);
+        scheduleExactAlarm(alarm);
     }
 
     private int convertDurationToMinutes(String durationText) {
         return Integer.parseInt(durationText.replaceAll("[^0-9]", ""));
     }
 
-    private void scheduleInexactAlarm(Alarm alarm) {
+    private void scheduleExactAlarm(Alarm alarm) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
         calendar.set(Calendar.MINUTE, timePicker.getMinute());
@@ -134,20 +137,32 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("mission", alarm.getMission());
+        intent.putExtra("soundChoice", alarm.getSound());
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this, ALARM_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+                this, alarm.getId().hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Log.d("AlarmSetup", "Scheduling alarm at time: " + calendar.getTimeInMillis());
 
         if (alarmManager != null) {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         }
+
 
         Toast.makeText(this, "Alarm set for " + alarm.getAlarmTime(), Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK);
         finish();
     }
-
+    private boolean checkScheduleExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
+                Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                startActivity(intent);
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -19,6 +19,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (mission != null) {
             alarmScreenIntent.putExtra("mission", mission);
         }
+
         alarmScreenIntent.putExtras(intent.getExtras());
         alarmScreenIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(alarmScreenIntent);

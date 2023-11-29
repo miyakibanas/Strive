@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +15,9 @@
         android:theme="@style/Theme.Strive"
         tools:targetApi="31">
         <activity
+            android:name=".SnoozeCountdownActivity"
+            android:exported="false" />
+        <activity
             android:name=".AlarmScreenActivity"
             android:exported="false" />
         <activity
@@ -23,6 +28,9 @@
             android:exported="false" />
         <activity
             android:name=".ExerciseAlarm"
+            android:exported ="false" />
+        <activity
+            android:name=".AffirmationsActivity"
             android:exported="false" />
         <activity
             android:name=".QuestionActivity"
@@ -37,9 +45,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".model.AlarmReceiver">
 
-        </receiver>
+        <receiver android:name=".model.AlarmReceiver"></receiver>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

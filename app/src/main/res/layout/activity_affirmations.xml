@@ -1,0 +1,86 @@
+<!-- res/layout/activity_affirmations.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/alarmTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:text="Alarm Time: 07:00 AM" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alarmTimeTextView"
+        android:layout_marginTop="20dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Question 1 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:text="How do you feel today?" />
+
+            <EditText
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Type your answer"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#757575"
+                android:backgroundTint="#FFFFFF"/>
+
+            <!-- Repeat the TextView and EditText pattern for each question -->
+            <!-- Question 10 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:text="What are you grateful for today?" />
+
+            <EditText
+                android:id="@+id/answer10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Type your answer"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#757575"
+                android:backgroundTint="#FFFFFF"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Button to submit the answers -->
+    <Button
+        android:id="@+id/submitAnswersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="Submit Answers"
+        android:textColor="#000000"
+        android:background="#FFFFFF"/>
+</RelativeLayout>
+
+
+
+
+

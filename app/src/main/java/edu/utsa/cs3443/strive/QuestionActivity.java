@@ -67,7 +67,6 @@ public class QuestionActivity extends AppCompatActivity {
         answerButton3.setText(answers[thirdNumber]);
     }
 
-    // Method for returning to previous screen
     public void delayReturnToMainActivity() {
         new Handler().postDelayed(new Runnable() {
             @Override

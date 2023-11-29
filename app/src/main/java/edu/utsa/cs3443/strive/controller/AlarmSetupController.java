@@ -22,15 +22,5 @@ public class AlarmSetupController {
     public void saveAlarmDetails(Alarm alarm) {
         settingsController.addAlarm(alarm);
     }
-    public void cancelAlarm() {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                context, ALARM_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-        );
 
-        if (alarmManager != null) {
-            alarmManager.cancel(pendingIntent);
-        }
-    }
 }
