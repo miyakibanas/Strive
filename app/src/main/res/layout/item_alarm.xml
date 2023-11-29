@@ -8,13 +8,23 @@
 
     <TextView
         android:id="@+id/alarm_time"
-        android:layout_width="0dp"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:fontFamily="sans-serif-medium"
         android:text="07:00 AM"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/alarm_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-medium"
+        android:text="TextView"
+        android:textSize="16sp" />
 
     <Switch
         android:id="@+id/alarm_enabled"
@@ -27,7 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_dark"
+        android:fontFamily="sans-serif-medium"
         android:text="Remove"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="10sp" />
 
 </LinearLayout>

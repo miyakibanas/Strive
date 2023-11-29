@@ -123,7 +123,7 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
         alarm.setAlarmTime(alarmTime);
 
         String label = editTextAlarmLabel.getText().toString();
-        alarm.setLabel(label != null ? label : "");
+        alarm.setLabel(label);
 
         Map<String, Boolean> repeatDays = new HashMap<>();
         repeatDays.put("Monday", checkBoxMonday.isChecked());
@@ -190,7 +190,7 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
     }
 
     /**
-     * Checks if the app has permission to schedule exact alarms (required in Android S and above).
+     * Checks if the app has permission to schedule exact alarms.
      * If permission is not granted, it prompts the user to grant it.
      *
      * @return True if the permission is granted, false otherwise.

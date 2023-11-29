@@ -59,6 +59,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
         Alarm alarm = alarmList.get(position);
         holder.alarmTime.setText(alarm.getAlarmTime());
         holder.alarmEnabled.setChecked(alarm.isEnabled());
+        holder.alarmLabelTextView.setText(alarm.getLabel());
 
         holder.alarmEnabled.setOnCheckedChangeListener((buttonView, isChecked) -> {
             alarm.setEnabled(isChecked);
@@ -89,6 +90,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView alarmTime;
+        TextView alarmLabelTextView;
         Switch alarmEnabled;
         View removeButton;
         public ViewHolder(View itemView) {
@@ -96,6 +98,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
             alarmTime = itemView.findViewById(R.id.alarm_time);
             alarmEnabled = itemView.findViewById(R.id.alarm_enabled);
             removeButton = itemView.findViewById(R.id.remove_alarm);
+            alarmLabelTextView = itemView.findViewById(R.id.alarm_label);
         }
     }
 
