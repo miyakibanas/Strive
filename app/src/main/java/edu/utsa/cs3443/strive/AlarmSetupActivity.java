@@ -1,3 +1,13 @@
+/**
+ * @author Miyaki Banas (xqe858)
+ * UTSA CS 3443 - Strive Project
+ * FALL 2023
+ *
+ * AlarmSetupActivity provides options to set the time, repeat days, mission, sound choice, snooze duration,
+ * and an optional label for each alarm. The activity uses a TimePicker for time selection,
+ * CheckBoxes for selecting repeat days, Spinners for selecting the mission, sound, and snooze duration,
+ * and an EditText for the alarm label. Alarms are scheduled using the AlarmManager.
+*/
 package edu.utsa.cs3443.strive;
 
 import android.app.AlarmManager;
@@ -26,7 +36,6 @@ import edu.utsa.cs3443.strive.model.Alarm;
 import edu.utsa.cs3443.strive.model.AlarmReceiver;
 
 public class AlarmSetupActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TimePicker timePicker;
     private CheckBox checkBoxMonday;
     private CheckBox checkBoxTuesday;
@@ -40,6 +49,14 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
     public static final int ALARM_REQUEST_CODE = 1;
     private AlarmSetupController alarmSetupController;
 
+    /**
+     * Initializes the activity, sets up the UI elements, and initializes the AlarmSetupController.
+     * This method also sets up the adapters for the spinners and onClick listeners for the buttons.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +96,12 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * Handles click events for the set alarm button.
+     * It checks for the required alarm permissions and proceeds to save the alarm.
+     *
+     * @param v The view that was clicked.
+     */
     @Override
     public void onClick(View v) {
         if (checkScheduleExactAlarmPermission()) {
@@ -86,6 +109,11 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Saves the alarm details entered by the user.
+     * It creates a new Alarm object, sets its properties based on the user's input,
+     * and schedules the alarm using the AlarmManager.
+     */
     private void saveAlarm() {
         Alarm alarm = new Alarm();
 
@@ -122,10 +150,21 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
         scheduleExactAlarm(alarm);
     }
 
+    /**
+     *
+     * @param durationText The duration string to be converted.
+     * @return The duration in minutes as an integer.
+     */
     private int convertDurationToMinutes(String durationText) {
         return Integer.parseInt(durationText.replaceAll("[^0-9]", ""));
     }
 
+    /**
+     * Schedules the alarm to trigger at the specified time using the AlarmManager.
+     * It creates a PendingIntent that triggers AlarmReceiver when the alarm time is reached.
+     *
+     * @param alarm The alarm to be scheduled.
+     */
     private void scheduleExactAlarm(Alarm alarm) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
@@ -150,6 +189,12 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
         finish();
     }
 
+    /**
+     * Checks if the app has permission to schedule exact alarms (required in Android S and above).
+     * If permission is not granted, it prompts the user to grant it.
+     *
+     * @return True if the permission is granted, false otherwise.
+     */
     private boolean checkScheduleExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

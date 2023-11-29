@@ -1,3 +1,11 @@
+/**
+ * @author Miyaki Banas (xqe858)
+ * UTSA CS 3443 - Strive Project
+ * FALL 2023
+ *
+ * Activity responsible for displaying the snooze count down.
+*/
+
 package edu.utsa.cs3443.strive;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +21,13 @@ public class SnoozeCountdownActivity extends AppCompatActivity {
     private TextView countdownTextView;
     private CountDownTimer countDownTimer;
 
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

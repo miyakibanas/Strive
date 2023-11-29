@@ -1,3 +1,15 @@
+/**
+ * @author Miyaki Banas (xqe858)
+ * UTSA CS 3443 - Strive Project
+ * FALL 2023
+ *
+ * SnakeGame manages the logic and it handles the snake's movement, collision detection, apple generation,
+ * and score tracking. The snake grows when it eats apples and the game ends when the snake collides with
+ * itself or the boundary of the grid.
+ * The game keeps track of the player's score and notifies when a predefined high score is reached.
+ * It also allows for restarting and updating the game state, including the direction of the snake.
+*/
+
 package edu.utsa.cs3443.strive.model;
 
 import java.util.ArrayList;
@@ -29,6 +41,11 @@ public class SnakeGame {
         this.scoreUpdateListener = listener;
     }
 
+    /**
+     * Updates the game state by moving the snake and checking for collisions or apple consumption.
+     * Increases the score when an apple is eaten and checks if the game should end based on
+     * the snake's collision with the boundary or itself.
+     */
     public void updateGame() {
         try {
             if (!gameOver) {
@@ -166,6 +183,9 @@ public class SnakeGame {
         UP, DOWN, LEFT, RIGHT
     }
 
+    /**
+     * Represents a point on the game grid. Used to track the position of the snake and apple.
+     */
     public static class Point {
         private final int x;
         private final int y;
@@ -183,6 +203,13 @@ public class SnakeGame {
             return y;
         }
 
+        /**
+         * Compares this point with another object for equality.
+         * Two points are equal if they have the same x and y coordinates.
+         *
+         * @param obj The object to compare with.
+         * @return True if the objects are equal, false otherwise.
+         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
@@ -191,6 +218,12 @@ public class SnakeGame {
             return x == point.x && y == point.y;
         }
 
+        /**
+         * Generates a hash code for this point.
+         * The hash code is calculated based on the point's x and y coordinates.
+         *
+         * @return The hash code for this point.
+         */
         @Override
         public int hashCode() {
             return 31 * x + y;

@@ -1,3 +1,15 @@
+/**
+ * @author Miyaki Banas (xqe858)
+ * UTSA CS 3443 - Strive Project
+ * FALL 2023
+ *
+ * AlarmScreenActivity displays the current time and provides options for snoozing the alarm or starting a mission.
+ * It also plays the selected alarm sound and handles snooze and mission start functionalities.
+ * The activity plays a sound based on the user's choice, allows snoozing the alarm,
+ * and initiates different missions based on the user's selection.
+ * It integrates a MediaPlayer to manage alarm sounds.
+*/
+
 package edu.utsa.cs3443.strive;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +40,13 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
     private TextView currentTimeTextView;
     private static final int SNOOZE_DURATION_MS = 5 * 60 * 1000;
 
+    /**
+     * Plays the selected alarm sound based on the user's choice.
+     * The method initializes and configures a MediaPlayer instance to play the specified sound.
+     *
+     * @param soundChoice The name of the sound file to be played as the alarm tone.
+     *
+     */
     private void playSelectedSound(String soundChoice) {
         int soundResourceId = R.raw.sound1;
 
@@ -59,6 +78,14 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    /**
+     * Initializes the activity, setting up the UI components and configuring the MediaPlayer.
+     * It retrieves the selected sound choice and mission from the intent and prepares the alarm screen.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +108,12 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    /**
+     * Handles click events for the snooze and start mission buttons.
+     * It triggers the snoozeAlarm or startMission methods based on the button clicked.
+     *
+     * @param v The view that was clicked.
+     */
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.snoozeButton) {
@@ -90,6 +123,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Sets the current time on the specified TextView.
+     * @param textView The TextView where the current time will be displayed.
+     */
     private void setCurrentTime(TextView textView) {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("hh:mm a", Locale.getDefault());
@@ -97,6 +134,11 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         textView.setText(currentTime);
     }
 
+    /**
+     * Initiates the snooze functionality of the alarm.
+     * It pauses the MediaPlayer and launches the SnoozeCountdownActivity.
+     *
+     */
     private void snoozeAlarm() {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
@@ -109,6 +151,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         finish();
     }
 
+    /**
+     * Reschedules the alarm to go off after a predefined snooze duration.
+     *
+     */
     private void rescheduleAlarm() {
         long alarmTime = System.currentTimeMillis() + SNOOZE_DURATION_MS;
 
@@ -122,6 +168,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * Starts the selected mission activity based on the user's choice.
+     *
+     */
     private void startMission() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
@@ -148,6 +198,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
         finish();
     }
 
+    /**
+     * Releases resources used by MediaPlayer upon the destruction of the activity.
+     *
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -1,3 +1,13 @@
+/**
+ * @author Miyaki Banas (xqe858)
+ * UTSA CS 3443 - Strive Project
+ * FALL 2023
+ *
+ *  SnakeGameController is a custom view that extends SurfaceView and handles the rendering and control of the snake game.
+ *  It manages the game loop, processes user inputs for controlling the snake, and renders the game state onto the canvas.
+ *  The controller interacts with the SnakeGame model to update the game state and responds to game events like game over.
+ *  This class also includes touch event handling to control the snake's direction and manages the game's pause and resume states.
+*/
 package edu.utsa.cs3443.strive.controller;
 
 import android.content.Context;
@@ -57,6 +67,12 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         this.mainActivity = mainActivity;
     }
 
+    /**
+     * Initializes the controller, sets up the game model, and prepares the view.
+     *
+     * @param attrs The AttributeSet used to configure the view.
+     * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
+     */
     private void init(AttributeSet attrs, int defStyleAttr) {
         surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -92,15 +108,33 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         });
     }
 
+    /**
+     * Called when the surface is created, signaling that the game can start or resume.
+     *
+     * @param holder The SurfaceHolder whose surface is being created.
+     */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         resume();
     }
 
+    /**
+     * Called when the surface dimensions change.
+     *
+     * @param holder The SurfaceHolder whose surface has changed.
+     * @param format The new PixelFormat of the surface.
+     * @param width The new width of the surface.
+     * @param height The new height of the surface.
+     */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     }
 
+    /**
+     * Called when the surface is destroyed, signaling that the game should pause.
+     *
+     * @param holder The SurfaceHolder whose surface is being destroyed.
+     */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         pause();
@@ -114,6 +148,10 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         this.gameEndListener = listener;
     }
 
+    /**
+     * The game loop method that runs on a separate thread.
+     * It continuously updates the game state and renders the game onto the canvas.
+     */
     @Override
     public void run() {
         while (playing) {
@@ -145,6 +183,11 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         }
     }
 
+    /**
+     * Handles rendering of the game's graphical elements on the canvas.
+     *
+     * @param canvas The Canvas on which the game elements are drawn.
+     */
     private void drawGame(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
         paint.setColor(Color.GREEN);
@@ -165,6 +208,9 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         canvas.drawText("High Score: " + defaultHighScore, 10, 60, paint);
     }
 
+    /**
+     * Handles the game over state, including stopping the game loop and triggering any game over events.
+     */
     private void handleGameOver() {
         playing = false;
         if (gameEndListener != null) {
@@ -187,6 +233,12 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         }
     }
 
+    /**
+     * Processes touch events to control the direction of the snake.
+     *
+     * @param event The motion event.
+     * @return True if the event was handled, false otherwise.
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
@@ -236,6 +288,9 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         return true;
     }
 
+    /**
+     * Restarts the game, resetting the score and game state, and starts a new game thread.
+     */
     public void restartGame() {
         playing = true;
         snakeGame.resetScore();
