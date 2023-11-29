@@ -6,6 +6,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
 
 import edu.utsa.cs3443.strive.AlarmSetupActivity;
 import edu.utsa.cs3443.strive.ExerciseAlarm;
@@ -17,15 +20,14 @@ public class ExerciseAlarmController {
     private String lastSelectedExercise;
     NumberPicker numberPicker;
     TextView exercise_name;
+
     ImageView img,backArrow,nextArrow;
     Button btnSave;
-    Button btnPreview;
     public ExerciseAlarmController(ExerciseAlarm exerciseAlarm) {
         this.exerciseAlarm = exerciseAlarm;
         numberPicker=exerciseAlarm.findViewById(R.id.number_picker);
         exercise_name=exerciseAlarm.findViewById(R.id.exercise_name);
         backArrow=exerciseAlarm.findViewById(R.id.back_arrow);
-        btnPreview=exerciseAlarm.findViewById(R.id.btnPreview);
         btnSave=exerciseAlarm.findViewById(R.id.btnSave);
         nextArrow=exerciseAlarm.findViewById(R.id.next_arrow);
         img=exerciseAlarm.findViewById(R.id.img);
@@ -50,19 +52,13 @@ public class ExerciseAlarmController {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(exerciseAlarm, "Have a great day!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(exerciseAlarm, MainActivity.class);
                 exerciseAlarm.startActivity(intent);
                 exerciseAlarm.finish();
             }
         });
-        btnPreview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(exerciseAlarm, MainActivity.class);
-                exerciseAlarm.startActivity(intent);
-                exerciseAlarm.finish();
-            }
-        });
+
     }
     private void switchExercise() {
         if (lastSelectedExercise.equals("Squat")) {
