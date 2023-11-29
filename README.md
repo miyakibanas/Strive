@@ -2,8 +2,8 @@
 Strive Team app
 
 # Strive Project
-Author: Miyaki Banas (xqe858), Kristian Garza, Luis Quintero, Mercedes Alejandro
-UTSA CS 3443 - FALL 2023
+- Authors: Miyaki Banas (xqe858), Kristian Garza, Luis Quintero, Mercedes Alejandro
+- UTSA CS 3443 - FALL 2023
 
 ## Description
 Strive is an Android application designed to manage and interact with custom alarms.
