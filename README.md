@@ -2,7 +2,7 @@
 Strive Team app
 
 # Strive Project
-- Authors: Miyaki Banas (xqe858), Kristian Garza, Luis Quintero, Mercedes Alejandro
+- Authors: Miyaki Banas, Kristian Garza, Luis Quintero, Mercedes Alejandro
 - UTSA CS 3443 - FALL 2023
 
 ## Description
