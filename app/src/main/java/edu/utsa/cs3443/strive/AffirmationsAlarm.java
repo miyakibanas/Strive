@@ -8,9 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.utsa.cs3443.strive.controller.AffirmationsController;
 
+/**
+ * Activity for  affirmations alarm functionality.
+ */
 public class AffirmationsAlarm extends AppCompatActivity
 {
+    // Controller for the affirmations alarm.
     AffirmationsController alarmController;
+
+    /**
+     * Starts the affirmations activity.
+     * @param savedInstanceState State of the application in a previous configuration.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

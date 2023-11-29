@@ -30,6 +30,9 @@ import edu.utsa.cs3443.strive.MainActivity;
 
 import edu.utsa.cs3443.strive.R;
 
+/**
+ * Controller for handling affirmations activity.
+ */
 public class AffirmationsController
 {
     private Activity activity;
@@ -39,6 +42,11 @@ public class AffirmationsController
     private List<EditText> answerFields;
     private List<String> questions;
 
+    /**
+     * Constructor to initialize the affirmations controller.
+     *
+     * @param activity The activity where this controller is used.
+     */
     public AffirmationsController(Activity activity)
     {
         this.activity = activity;
@@ -51,6 +59,10 @@ public class AffirmationsController
         setUpSubmitButton();
         setCurrentTime();
     }
+
+    /**
+     * Sets the current time on the alarmTimeTextView.
+     */
     private void setCurrentTime()
     {
         Calendar calendar = Calendar.getInstance();
@@ -58,6 +70,13 @@ public class AffirmationsController
         String currentTime = format.format(calendar.getTime());
         alarmTimeTextView.setText(currentTime);
     }
+
+    /**
+     * Loads questions from a CSV file.
+     *
+     * @param fileName The name of the CSV file.
+     * @return A list of questions.
+     */
     private List<String> loadQuestionsFromCSV(String fileName)
     {
         List<String> questions = new ArrayList<>();
@@ -78,6 +97,11 @@ public class AffirmationsController
         return questions;
     }
 
+    /**
+     * Displays a random set of questions pulled from the CSV file
+     *
+     * @param numberOfQuestions The number of questions to display.
+     */
     private void displayRandomQuestions(int numberOfQuestions)
     {
         Collections.shuffle(questions, new Random());
@@ -87,6 +111,11 @@ public class AffirmationsController
         }
     }
 
+    /**
+     * Adds a question and answer view
+     *
+     * @param question The question to be added.
+     */
     private void addQuestionAnswerView(String question)
     {
         TextView questionTextView = new TextView(activity);
@@ -114,6 +143,9 @@ public class AffirmationsController
     }
 
 
+    /**
+     * Sets up the submit button functionality.
+     */
     private void setUpSubmitButton()
     {
         submitButton.setOnClickListener(v ->
@@ -131,6 +163,11 @@ public class AffirmationsController
         });
     }
 
+    /**
+     * Checks if all questions have been answered.
+     *
+     * @return True if all questions are answered, false otherwise.
+     */
     private boolean areAllQuestionsAnswered()
     {
         for (EditText answerField : answerFields)
