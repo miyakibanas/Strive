@@ -29,7 +29,7 @@ It includes functionalities like setting up alarms with specific missions, choos
 ### Cloning the Repository
 To clone the repository, click "Code" in Github and select "Open with Github Desktop." 
 Download Github desktop and enter user credentials. 
-Select 
+Open the repository in external editor.
 
 ### Opening the Project in Android Studio
 1. Open Android Studio.
@@ -49,8 +49,3 @@ Select
 - List any functionality that is not working in the final version of the application.
 - Mention any specific limitations or bugs that users might encounter.
 
-## License
-[Specify the license or state 'All Rights Reserved' if the project is not open for public use.]
-
-## Contact
-For any queries or feedback, please contact me at [Your Email].
