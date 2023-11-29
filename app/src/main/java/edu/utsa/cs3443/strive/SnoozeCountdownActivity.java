@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class SnoozeCountdownActivity extends AppCompatActivity {
-
     private TextView countdownTextView;
     private CountDownTimer countDownTimer;
 
@@ -32,6 +31,17 @@ public class SnoozeCountdownActivity extends AppCompatActivity {
             public void onFinish() {
                 Intent intent = new Intent(SnoozeCountdownActivity.this, AlarmScreenActivity.class);
                 intent.putExtra("isReturningFromSnooze", true);
+
+                String mission = getIntent().getStringExtra("mission");
+                if (mission != null) {
+                    intent.putExtra("mission", mission);
+                }
+
+                String soundChoice = getIntent().getStringExtra("soundChoice");
+                if (soundChoice != null) {
+                    intent.putExtra("soundChoice", soundChoice);
+                }
+
                 startActivity(intent);
                 finish();
             }

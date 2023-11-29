@@ -1,7 +1,5 @@
 package edu.utsa.cs3443.strive.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,21 +19,28 @@ public class SnakeGame {
         resetScore();
     }
 
+    public interface ScoreUpdateListener {
+        void onDefaultScoreReached();
+    }
+
+    private ScoreUpdateListener scoreUpdateListener;
+
+    public void setScoreUpdateListener(ScoreUpdateListener listener) {
+        this.scoreUpdateListener = listener;
+    }
+
     public void updateGame() {
-        Log.d("SnakeGame", "Updating game");
         try {
             if (!gameOver) {
                 moveSnake();
                 checkCollision();
 
                 if (checkIfSnakeEatsApple()) {
-                    score++; // Increment the score
-                    generateApple(); // Replace the eaten apple with a new one
-                    Log.d("SnakeGame", "Score increased to " + score);
+                    score++;
+                    generateApple();
 
                     if (hasReachedHighScore()) {
                         gameOver = true;
-                        Log.d("SnakeGame", "Reached high score, setting gameOver to true");
                     }
                 }
             }
@@ -43,9 +48,11 @@ public class SnakeGame {
             gameOver = true;
         }
     }
+
     private boolean hasReachedHighScore() {
         return score >= DEFAULT_HIGH_SCORE;
     }
+
     public int getScore() {
         return score;
     }
@@ -53,6 +60,7 @@ public class SnakeGame {
     public void resetScore() {
         score = 0;
     }
+
     private void resetGame() {
         if (snake == null) {
             snake = new ArrayList<>();
@@ -64,11 +72,11 @@ public class SnakeGame {
         gameOver = false;
         direction = Direction.RIGHT;
     }
+
     public void restartGame() {
-        Log.d("SnakeGame", "Restarting game. Current state: Game Over - " + gameOver);
-        resetGame(); // Resets the game to its initial state
-        Log.d("SnakeGame", "Game restarted. New state: Game Over - " + gameOver);
+        resetGame();
     }
+
     private void moveSnake() {
         Point newHead = getNextHead();
         snake.add(0, newHead);
@@ -76,6 +84,12 @@ public class SnakeGame {
         if (newHead.equals(apple)) {
             score++;
             generateApple();
+
+            if (score >= DEFAULT_HIGH_SCORE) {
+                if (scoreUpdateListener != null) {
+                    scoreUpdateListener.onDefaultScoreReached();
+                }
+            }
         } else {
             snake.remove(snake.size() - 1);
         }
@@ -112,10 +126,12 @@ public class SnakeGame {
             }
         }
     }
+
     private boolean checkIfSnakeEatsApple() {
         Point head = snake.get(0);
         return head.equals(apple);
     }
+
     private void generateApple() {
         int x, y;
         do {

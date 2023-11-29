@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -61,13 +60,11 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
 
         findViewById(R.id.button_set_alarm).setOnClickListener(this);
 
-        ArrayAdapter<CharSequence> soundAdapter = ArrayAdapter.createFromResource(this,
-                R.array.sound_choices, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> soundAdapter = ArrayAdapter.createFromResource(this, R.array.sound_choices, android.R.layout.simple_spinner_item);
         soundAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSound.setAdapter(soundAdapter);
 
-        ArrayAdapter<CharSequence> snoozeAdapter = ArrayAdapter.createFromResource(this,
-                R.array.snooze_duration_choices, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> snoozeAdapter = ArrayAdapter.createFromResource(this, R.array.snooze_duration_choices, android.R.layout.simple_spinner_item);
         snoozeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSnooze.setAdapter(snoozeAdapter);
 
@@ -143,17 +140,16 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
                 this, alarm.getId().hashCode(), intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Log.d("AlarmSetup", "Scheduling alarm at time: " + calendar.getTimeInMillis());
 
         if (alarmManager != null) {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         }
 
-
         Toast.makeText(this, "Alarm set for " + alarm.getAlarmTime(), Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK);
         finish();
     }
+
     private boolean checkScheduleExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
