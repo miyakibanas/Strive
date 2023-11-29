@@ -6,14 +6,14 @@
     <EditText
         android:id="@+id/questionEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="70dp"
-        android:hint="Enter question"/>
+        android:hint="Enter question" />
 
     <EditText
         android:id="@+id/answerEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/questionEditText"
         android:layout_marginTop="70dp"
         android:hint="Enter correct answer" />
@@ -21,7 +21,7 @@
     <EditText
         android:id="@+id/wrongAnswer1EditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/answerEditText"
         android:layout_marginTop="70dp"
         android:hint="Enter wrong answer 1" />
@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/wrongAnswer2EditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@id/wrongAnswer1EditText"
         android:layout_marginTop="70dp"
         android:hint="Enter wrong answer 2" />

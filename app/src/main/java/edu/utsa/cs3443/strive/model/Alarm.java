@@ -75,7 +75,6 @@ public class Alarm implements Serializable {
     }
 
     public static String getSound() {
-
         return sound;
     }
 

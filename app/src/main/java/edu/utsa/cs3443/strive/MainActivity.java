@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FloatingActionButton fabAddAlarm = findViewById(R.id.fab_add_alarm);
         fabAddAlarm.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, AlarmSetupActivity.class);

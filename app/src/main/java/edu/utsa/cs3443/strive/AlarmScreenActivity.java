@@ -27,37 +27,37 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
     private Button startMissionButton;
     private TextView currentTimeTextView;
     private static final int SNOOZE_DURATION_MS = 5 * 60 * 1000;
+
     private void playSelectedSound(String soundChoice) {
         int soundResourceId = R.raw.sound1;
 
         if (soundChoice != null) {
             switch (soundChoice) {
-                case "Sound1":
+                case "sound1":
                     soundResourceId = R.raw.sound1;
                     break;
-                case "Sound2":
+                case "sound2":
                     soundResourceId = R.raw.sound2;
                     break;
-                case "Sound3":
+                case "sound3":
                     soundResourceId = R.raw.sound3;
                     break;
             }
         }
-        try {
-            mediaPlayer = MediaPlayer.create(this, soundResourceId);
-            if (mediaPlayer == null) {
-                Log.e("AlarmScreenActivity", "Failed to create MediaPlayer");
-
-            } else {
-                mediaPlayer.setLooping(true);
-                mediaPlayer.start();
-            }
-        } catch (Exception e) {
-            Log.e("AlarmScreenActivity", "Error creating MediaPlayer", e);
-
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
         }
-    }
 
+        mediaPlayer = MediaPlayer.create(this, soundResourceId);
+        if (mediaPlayer == null) {
+            Log.e("AlarmScreenActivity", "Failed to create MediaPlayer");
+        } else {
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +79,6 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
             rescheduleAlarm();
         }
 
-        Log.d("AlarmScreen", "Alarm Screen Activity started.");
     }
 
     @Override
@@ -103,8 +102,10 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
             mediaPlayer.pause();
         }
 
-        Intent intent = new Intent(this, SnoozeCountdownActivity.class);
-        startActivity(intent);
+        Intent snoozeIntent = new Intent(this, SnoozeCountdownActivity.class);
+        snoozeIntent.putExtra("mission", getIntent().getStringExtra("mission"));
+        snoozeIntent.putExtra("soundChoice", getIntent().getStringExtra("soundChoice"));
+        startActivity(snoozeIntent);
         finish();
     }
 
@@ -118,9 +119,6 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
 
         if (alarmManager != null) {
             alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent);
-            Log.d("AlarmScreenActivity", "Alarm rescheduled for 5 minutes later");
-        } else {
-            Log.e("AlarmScreenActivity", "AlarmManager is null, cannot reschedule alarm");
         }
     }
 

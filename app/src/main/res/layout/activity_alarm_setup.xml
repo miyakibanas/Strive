@@ -19,7 +19,6 @@
             android:timePickerMode="spinner"
             android:theme="@style/TimePickerTheme" />
 
-        <!-- Repeat Option -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +84,6 @@
 
         </LinearLayout>
 
-        <!-- Mission (Challenge) -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +98,6 @@
             android:layout_height="48dp"
             android:background="@color/white" />
 
-        <!-- Sound Selection -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,7 +112,6 @@
             android:layout_height="48dp"
             android:background="@color/white" />
 
-        <!-- Snooze Interval -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,8 +125,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/white" />
-
-        <!-- Alarm Label -->
 
         <TextView
             android:layout_width="match_parent"
@@ -147,7 +141,6 @@
             android:hint="Alarm Label"
             android:textColor="@color/white" />
 
-        <!-- Confirmation Button -->
         <Button
             android:id="@+id/button_set_alarm"
             android:layout_width="match_parent"

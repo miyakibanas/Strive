@@ -7,14 +7,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.utsa.cs3443.strive.controller.SnakeGameController;
 import edu.utsa.cs3443.strive.model.AlarmReceiver;
+import edu.utsa.cs3443.strive.model.SnakeGame;
 
 
 public class SnakeGameActivity extends AppCompatActivity {
@@ -26,15 +25,13 @@ public class SnakeGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_snake_game);
 
         snakeGameController = findViewById(R.id.snakeGameController);
-        snakeGameController.setGameEndListener(new SnakeGameController.GameEndListener() {
+        snakeGameController.setMainActivity(this);
+        snakeGameController.getSnakeGame().setScoreUpdateListener(new SnakeGame.ScoreUpdateListener() {
             @Override
-            public void onGameEnd() {
-                handleGameEnd();
+            public void onDefaultScoreReached() {
+                returnToMainActivity();
             }
         });
-    }
-    private void handleGameEnd() {
-        delayReturnToMainActivity();
     }
 
     @Override
@@ -63,19 +60,9 @@ public class SnakeGameActivity extends AppCompatActivity {
         }
     }
 
-    private void delayReturnToMainActivity() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SnakeGameActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish(); // Close current activity if needed
-                    }
-                }, 3000); // 3 seconds delay
-            }
-        });
+    public void returnToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

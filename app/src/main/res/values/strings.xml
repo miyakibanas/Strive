@@ -3,15 +3,14 @@
     <string name="add_alarm">Add alarm</string>
 
     <string-array name="sound_choices">
-        <item>Sound 1</item>
-        <item>Sound 2</item>
-        <item>Sound 3</item>
+        <item>sound1</item>
+        <item>sound2</item>
+        <item>sound3</item>
     </string-array>
 
     <string-array name="snooze_duration_choices">
         <item>5 minutes</item>
         <item>10 minutes</item>
         <item>15 minutes</item>
-        <!-- Add more durations as needed -->
     </string-array>
 </resources>
