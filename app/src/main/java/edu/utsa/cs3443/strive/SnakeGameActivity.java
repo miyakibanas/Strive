@@ -61,17 +61,6 @@ public class SnakeGameActivity extends AppCompatActivity {
         snakeGameController.pause();
     }
 
-    private void cancelAlarm() {
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmReceiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, ALARM_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-        if (alarmManager != null) {
-            alarmManager.cancel(pendingIntent);
-        }
-    }
-
     /**
      * Transitions from the Snake Game back to the main activity.
      * This method is typically called when a certain condition in the game is met,

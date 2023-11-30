@@ -19,7 +19,7 @@ It includes functionalities like setting up alarms with specific missions, choos
 ## Requirements
 - Android Studio
 - Android device or emulator running Android version (specify minimum version).
-- Internet access (if applicable, specify why and how it's used).
+- Internet access
 
 ## Installation and Running the Application
 
