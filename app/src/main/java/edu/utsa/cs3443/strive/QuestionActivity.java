@@ -20,6 +20,13 @@ public class QuestionActivity extends AppCompatActivity {
     private Button answerButton2;
     private Button answerButton3;
 
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +48,8 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the question and answer choices on the buttons
+     * Displays question from Question object and displays answer choices in random order
+     *
      * @param question
      * @param answers
      */
@@ -67,6 +75,9 @@ public class QuestionActivity extends AppCompatActivity {
         answerButton3.setText(answers[thirdNumber]);
     }
 
+    /**
+     * Returns the phone screen back to the main alarm screen after completing "Question" mission
+     */
     public void delayReturnToMainActivity() {
         new Handler().postDelayed(new Runnable() {
             @Override
