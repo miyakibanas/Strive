@@ -47,7 +47,7 @@ It includes functionalities like setting up alarms with specific missions, choos
 - The alarm's functionality might be dependent on the device's state. If the device is powered off or in certain power-saving modes, the alarm might not function as expected.
 - The app's ability to play sound or send notifications could be affected by the device's sound settings, like 'Do Not Disturb' modes.
 - The app's performance, including the rendering of the snake game, might vary across different devices and screen sizes. 
-- The app might have limited options for alarm customization, like setting specific tones for different alarms or more advanced repeat patterns.
-- The app's user interface and user experience could have limitations, especially in terms of accessibility and ease of use, depending on how it's designed and implemented.
--  The app appears to rely on local storage for saving alarm and game data. This means data could be lost if the app is uninstalled or the device is reset, and there's no synchronization across devices.
+- The app have limited options for alarm customization, like setting specific tones for different alarms or more advanced repeat patterns.
+- The app's user interface and user experience could have limitations, especially in terms of accessibility and ease of use.
+- The app relies on local storage for saving alarm and game data. This means data could be lost if the app is uninstalled or the device is reset, and there's no synchronization across devices.
 

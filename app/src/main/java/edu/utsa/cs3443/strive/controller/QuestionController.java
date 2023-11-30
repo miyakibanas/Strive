@@ -27,6 +27,7 @@ public class QuestionController implements View.OnClickListener{
     }
 
     /**
+     * Display correct or incorrect message from pressing an answer
      *
      * @param v The view that was clicked.
      */

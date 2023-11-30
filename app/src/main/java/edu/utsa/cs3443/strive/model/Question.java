@@ -14,13 +14,24 @@ public class Question {
     private String answer;
     private String[] choices;
 
+    /**
+     * Constructor for Question objects
+     *
+     * @param question
+     * @param answer
+     * @param choices
+     */
     public Question (String question, String answer, String[] choices){
         this.question = question;
         this.answer = answer;
         this.choices = choices;
     }
 
-    // Grabs questions from csv, creates objects out of them, and returns a random one
+    /**
+     * Grabs questions from csv, creates objects out of them, and returns a random one
+     *
+     * @param manager
+     */
     public void loadQuestion(AssetManager manager){
         ArrayList<Question> questionList = new ArrayList<>();
         InputStream inputStream;
