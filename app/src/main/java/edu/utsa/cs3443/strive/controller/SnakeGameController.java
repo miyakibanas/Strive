@@ -176,7 +176,7 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
             }
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -204,7 +204,7 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
         paint.setTextSize(40);
         canvas.drawText("Score: " + snakeGame.getScore(), 10, 30, paint);
 
-        int defaultHighScore = 2;
+        int defaultHighScore = 5;
         canvas.drawText("High Score: " + defaultHighScore, 10, 60, paint);
     }
 
