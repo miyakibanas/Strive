@@ -15,6 +15,9 @@ import edu.utsa.cs3443.strive.ExerciseAlarm;
 import edu.utsa.cs3443.strive.MainActivity;
 import edu.utsa.cs3443.strive.R;
 
+/**
+ * Controller for exercise alarm activity
+ */
 public class ExerciseAlarmController {
     ExerciseAlarm exerciseAlarm;
     private String lastSelectedExercise;
@@ -23,6 +26,12 @@ public class ExerciseAlarmController {
 
     ImageView img,backArrow,nextArrow;
     Button btnSave;
+
+    /**
+     * Displays the back and next arrow to go back and forth between exercises
+     *
+     * @param exerciseAlarm view when arrows are clicked
+     */
     public ExerciseAlarmController(ExerciseAlarm exerciseAlarm) {
         this.exerciseAlarm = exerciseAlarm;
         numberPicker=exerciseAlarm.findViewById(R.id.number_picker);
@@ -36,6 +45,7 @@ public class ExerciseAlarmController {
         lastSelectedExercise = "Squat";
         img.setImageResource(R.drawable.squatting);
         exercise_name.setText(lastSelectedExercise);
+
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +59,9 @@ public class ExerciseAlarmController {
                 switchExercise();
             }
         });
+        /**
+         * toast created once exercise alarm activity is completed
+         */
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +73,10 @@ public class ExerciseAlarmController {
         });
 
     }
+
+    /**
+     * Displays squat or jumping jacks when user selects exercise
+     */
     private void switchExercise() {
         if (lastSelectedExercise.equals("Squat")) {
             img.setImageResource(R.drawable.jumpingjacks);

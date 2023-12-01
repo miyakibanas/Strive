@@ -7,9 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.utsa.cs3443.strive.controller.ExerciseAlarmController;
 
+/**
+ * Activity for Exercise alarm functionality.
+ */
 public class ExerciseAlarm extends AppCompatActivity{
 
     ExerciseAlarmController alarmController;
+
+    /**
+     * Starts the exercise activity.
+     * @param savedInstanceState State of the application in a previous configuration.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
