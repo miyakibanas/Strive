@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -23,7 +22,7 @@ public class AlarmSetupController {
      * Initializes the controller with the provided context.
      * Sets up the SettingsController to manage alarm data.
      *
-     * @param context The context used for initializing the SettingsController.
+     * @param context
      */
     public AlarmSetupController(Context context) {
         this.context = context;
@@ -34,7 +33,7 @@ public class AlarmSetupController {
      * Saves the details of the provided alarm by adding it to the stored list of alarms
      * using the SettingsController.
      *
-     * @param alarm The alarm to be saved.
+     * @param alarm
      */
     public void saveAlarmDetails(Alarm alarm) {
         settingsController.addAlarm(alarm);

@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -49,7 +48,7 @@ public class Alarm implements Serializable {
     /**
      * Checks whether the alarm is enabled or not.
      *
-     * @return True if the alarm is enabled, false otherwise.
+     * @return
      */
     public boolean isEnabled() {
         return isEnabled;
@@ -58,7 +57,7 @@ public class Alarm implements Serializable {
     /**
      * Sets the enabled state of the alarm.
      *
-     * @param enabled The new enabled state of the alarm.
+     * @param enabled
      */
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
@@ -171,7 +170,7 @@ public class Alarm implements Serializable {
     /**
      * Generates a unique identifier for the alarm using UUID.
      *
-     * @return A unique identifier string.
+     * @return
      */
     private String generateUniqueId() {
         return UUID.randomUUID().toString();

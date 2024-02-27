@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -44,7 +43,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
      * Plays the selected alarm sound based on the user's choice.
      * The method initializes and configures a MediaPlayer instance to play the specified sound.
      *
-     * @param soundChoice The name of the sound file to be played as the alarm tone.
+     * @param soundChoice
      *
      */
     private void playSelectedSound(String soundChoice) {
@@ -82,9 +81,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
      * Initializes the activity, setting up the UI components and configuring the MediaPlayer.
      * It retrieves the selected sound choice and mission from the intent and prepares the alarm screen.
      *
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     * @param
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +109,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
      * Handles click events for the snooze and start mission buttons.
      * It triggers the snoozeAlarm or startMission methods based on the button clicked.
      *
-     * @param v The view that was clicked.
+     * @param v
      */
     @Override
     public void onClick(View v) {
@@ -125,7 +122,7 @@ public class AlarmScreenActivity extends AppCompatActivity implements View.OnCli
 
     /**
      * Sets the current time on the specified TextView.
-     * @param textView The TextView where the current time will be displayed.
+     * @param textView
      */
     private void setCurrentTime(TextView textView) {
         Calendar calendar = Calendar.getInstance();

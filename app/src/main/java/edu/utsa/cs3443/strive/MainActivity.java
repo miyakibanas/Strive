@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * to allow the user to add a new alarm. Uses an ActivityResultLauncher to handle
      * the result from the AlarmSetupActivity.
      *
-     * @param view The view that was clicked.
+     * @param view
      */
     @Override
     public void onClick(View view) {

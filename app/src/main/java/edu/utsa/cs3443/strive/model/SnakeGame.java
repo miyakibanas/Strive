@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -207,8 +206,8 @@ public class SnakeGame {
          * Compares this point with another object for equality.
          * Two points are equal if they have the same x and y coordinates.
          *
-         * @param obj The object to compare with.
-         * @return True if the objects are equal, false otherwise.
+         * @param obj
+         * @return
          */
         @Override
         public boolean equals(Object obj) {
@@ -222,7 +221,7 @@ public class SnakeGame {
          * Generates a hash code for this point.
          * The hash code is calculated based on the point's x and y coordinates.
          *
-         * @return The hash code for this point.
+         * @return
          */
         @Override
         public int hashCode() {

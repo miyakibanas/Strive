@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -22,8 +21,8 @@ public class AlarmReceiver extends BroadcastReceiver {
      * Called when the BroadcastReceiver is receiving an Intent broadcast.
      * Initiates the alarm screen with the necessary information about the alarm that was set.
      *
-     * @param context The Context in which the receiver is running.
-     * @param intent The Intent being received, containing alarm data.
+     * @param context
+     * @param intent
      */
     @Override
     public void onReceive(Context context, Intent intent) {

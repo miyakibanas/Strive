@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -100,7 +99,7 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
      * Handles click events for the set alarm button.
      * It checks for the required alarm permissions and proceeds to save the alarm.
      *
-     * @param v The view that was clicked.
+     * @param v
      */
     @Override
     public void onClick(View v) {
@@ -163,7 +162,7 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
      * Schedules the alarm to trigger at the specified time using the AlarmManager.
      * It creates a PendingIntent that triggers AlarmReceiver when the alarm time is reached.
      *
-     * @param alarm The alarm to be scheduled.
+     * @param alarm
      */
     private void scheduleExactAlarm(Alarm alarm) {
         Calendar calendar = Calendar.getInstance();
@@ -193,7 +192,7 @@ public class AlarmSetupActivity extends AppCompatActivity implements View.OnClic
      * Checks if the app has permission to schedule exact alarms.
      * If permission is not granted, it prompts the user to grant it.
      *
-     * @return True if the permission is granted, false otherwise.
+     * @return
      */
     private boolean checkScheduleExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

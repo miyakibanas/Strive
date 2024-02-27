@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -70,8 +69,8 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Initializes the controller, sets up the game model, and prepares the view.
      *
-     * @param attrs The AttributeSet used to configure the view.
-     * @param defStyleAttr An attribute in the current theme that contains a reference to a style resource.
+     * @param attrs
+     * @param defStyleAttr
      */
     private void init(AttributeSet attrs, int defStyleAttr) {
         surfaceHolder = getHolder();
@@ -111,7 +110,7 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Called when the surface is created, signaling that the game can start or resume.
      *
-     * @param holder The SurfaceHolder whose surface is being created.
+     * @param holder
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -121,10 +120,10 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Called when the surface dimensions change.
      *
-     * @param holder The SurfaceHolder whose surface has changed.
-     * @param format The new PixelFormat of the surface.
-     * @param width The new width of the surface.
-     * @param height The new height of the surface.
+     * @param holder
+     * @param format
+     * @param width
+     * @param height
      */
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -133,7 +132,7 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Called when the surface is destroyed, signaling that the game should pause.
      *
-     * @param holder The SurfaceHolder whose surface is being destroyed.
+     * @param holder
      */
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
@@ -186,7 +185,7 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Handles rendering of the game's graphical elements on the canvas.
      *
-     * @param canvas The Canvas on which the game elements are drawn.
+     * @param canvas
      */
     private void drawGame(Canvas canvas) {
         canvas.drawColor(Color.BLACK);
@@ -236,8 +235,8 @@ public class SnakeGameController extends SurfaceView implements Runnable, Surfac
     /**
      * Processes touch events to control the direction of the snake.
      *
-     * @param event The motion event.
-     * @return True if the event was handled, false otherwise.
+     * @param event
+     * @return
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {

@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -34,12 +33,11 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
     }
 
     /**
-     * Creates new views (invoked by the layout manager) for each item in the RecyclerView.
+     * Creates new views for each item in the RecyclerView.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to
-     *               an adapter position.
-     * @param viewType The view type of the new View.
-     * @return A new ViewHolder that holds a View of the given view type.
+     * @param parent
+     * @param viewType
+     * @return
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,11 +46,10 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
     }
 
     /**
-     * Replaces the contents of a view (invoked by the layout manager).
+     * Replaces the contents of a view.
      *
-     * @param holder The ViewHolder which should be updated to represent the contents of the
-     *        item at the given position in the data set.
-     * @param position The position of the item within the adapter's data set.
+     * @param holder
+     * @param position
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -74,9 +71,9 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
     }
 
     /**
-     * Returns the size of the dataset (invoked by the layout manager).
+     * Returns the size of the dataset.
      *
-     * @return The number of items in the adapter's data set.
+     * @return
      */
     @Override
     public int getItemCount() {
@@ -105,7 +102,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ViewHolder> 
     /**
      * Updates the alarm list in the adapter and notifies that the data set has changed.
      *
-     * @param alarms The new list of alarms to be displayed.
+     * @param alarms
      */
     public void setAlarms(List<Alarm> alarms) {
         this.alarmList = alarms;

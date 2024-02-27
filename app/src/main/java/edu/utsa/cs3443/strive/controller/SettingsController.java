@@ -1,5 +1,4 @@
 /**
- * @author Miyaki Banas (xqe858)
  * UTSA CS 3443 - Strive Project
  * FALL 2023
  *
@@ -31,7 +30,7 @@ public class SettingsController {
     /**
      * Initializes the controller with the provided context and sets up SharedPreferences for data storage.
      *
-     * @param context The context used to access SharedPreferences.
+     * @param context
      */
     public SettingsController(Context context) {
         this.context = context;
@@ -41,7 +40,7 @@ public class SettingsController {
     /**
      * Adds a new alarm to the stored list of alarms.
      *
-     * @param alarm The alarm to add.
+     * @param alarm
      */
     public void addAlarm(Alarm alarm) {
         List<Alarm> alarms = getAlarms();
@@ -52,7 +51,7 @@ public class SettingsController {
     /**
      * Retrieves the list of stored alarms.
      *
-     * @return A List of Alarm objects.
+     * @return
      */
     public List<Alarm> getAlarms() {
         String json = sharedPreferences.getString(ALARM_LIST_KEY, null);
@@ -64,7 +63,7 @@ public class SettingsController {
     /**
      * Removes a specified alarm from the stored list of alarms.
      *
-     * @param alarm The alarm to remove.
+     * @param alarm
      */
     public void removeAlarm(Alarm alarm) {
         List<Alarm> alarms = getAlarms();
@@ -75,7 +74,7 @@ public class SettingsController {
     /**
      * Updates an existing alarm in the stored list of alarms.
      *
-     * @param updatedAlarm The alarm with updated information.
+     * @param updatedAlarm
      */
     public void updateAlarm(Alarm updatedAlarm) {
         List<Alarm> alarms = getAlarms();
@@ -91,7 +90,7 @@ public class SettingsController {
     /**
      * Saves the provided list of alarms to SharedPreferences.
      *
-     * @param alarms The list of alarms to save.
+     * @param alarms
      */
     public void saveAlarms(List<Alarm> alarms) {
         String json = gson.toJson(alarms);
